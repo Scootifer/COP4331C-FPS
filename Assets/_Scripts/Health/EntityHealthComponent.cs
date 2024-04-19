@@ -5,18 +5,8 @@ using UnityEngine;
 public abstract class EntityHealthComponent : MonoBehaviour
 {
 
-    public float currentHealth { get; private set; }
-    [SerializeField] private float maxHealth;
-
-    
-
-    private void Awake()
-    {
-        maxHealth *= transform.localScale.x;
-        Debug.Log($"AI Health {maxHealth}");
-
-        currentHealth = maxHealth;
-    }
+    public float currentHealth;
+    public float maxHealth = 50;
 
     public void ApplyDamage(float damage)
     {
@@ -26,6 +16,9 @@ public abstract class EntityHealthComponent : MonoBehaviour
         {
             ApplyDeath();
         }
+
+        if (gameObject.tag.Equals("Player")) GameObject.Find("UICanvas").GetComponent<UIScript>().TakeDamage(currentHealth);
+
     }
 
     public abstract void PlayDeathEffects();

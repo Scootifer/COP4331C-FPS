@@ -13,11 +13,13 @@ public class ShootPointCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (_collisionList == null || other == null || other.gameObject == null) return;
         _collisionList.Add(other.gameObject);
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (_collisionList == null || other == null || other.gameObject == null) return;
         _collisionList.Remove(other.gameObject);
     }
 }

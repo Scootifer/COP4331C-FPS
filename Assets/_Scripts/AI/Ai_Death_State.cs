@@ -16,7 +16,7 @@ public class Ai_Death_State : AiState
         direction.y = 1;
         agent.mesh.updateWhenOffscreen = true;
         //Destroy(agent.GameObject);
-        Debug.Log("Death");
+        Debug.Log("Death Thomas Script");
     }
 
     public void Update(AiAgent agent)

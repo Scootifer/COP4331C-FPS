@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32003db15af6b8c4fa53aa44d7b5d8ef, type: 3}
+  m_Name: ai_default_config
+  m_EditorClassIdentifier: 
+  maxtime: 0.5
+  maxDistance: 35
+  maxSightDistance: 35

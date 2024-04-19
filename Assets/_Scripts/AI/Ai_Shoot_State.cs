@@ -18,9 +18,13 @@ public class Ai_Shoot_State : AiState
     {
         timer = 2.0f;
         agent.navMeshAgent.stoppingDistance = 3.0f;
-
+        
+        //fire effects
         GameObject effect1 = GameObject.Instantiate(agent._shootEffectPrefab, Vector3.zero, agent._eye1.transform.rotation);
         GameObject effect2 = GameObject.Instantiate(agent._shootEffectPrefab, Vector3.zero, agent._eye2.transform.rotation);
+
+        //sound effect
+        GameObject effect3 = GameObject.Instantiate(agent._shootSoundEffectPrefab, Vector3.zero, agent._eye2.transform.rotation);
 
         effect1.transform.SetParent(agent.transform);
         effect2.transform.SetParent(agent.transform);

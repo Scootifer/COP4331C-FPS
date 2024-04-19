@@ -28,6 +28,7 @@ public class Ai_ChasePlayer_State : AiState
         }
         
         timer -= Time.deltaTime;
+
         if(!agent.navMeshAgent.hasPath)
         {
             agent.navMeshAgent.destination = agent.playerTransform.position;

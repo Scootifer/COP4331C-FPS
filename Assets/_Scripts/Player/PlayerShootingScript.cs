@@ -19,6 +19,7 @@ public class PlayerShootingScript : MonoBehaviour
     [SerializeField] LayerMask _attackPointLayer;
     [SerializeField] GameObject _playerCameraGameObject;
     private Camera _playerCamera;
+    private UIScript _playerUI;
 
     [Header("Weapon Related Prefabs")]
     [SerializeField] GameObject _weaponEffectsEmptyGameObject;
@@ -44,6 +45,7 @@ public class PlayerShootingScript : MonoBehaviour
     private void Start()
     {
         _playerCamera = _playerCameraGameObject.GetComponent<Camera>();
+        _playerUI = GameObject.Find("UICanvas").GetComponent<UIScript>();
 
         _muzzleFlash = _weaponEffectsEmptyGameObject.GetComponentInChildren<ParticleSystem>();
         _shootingCoroutine = StartCoroutine(ShootingCoroutine());
@@ -106,6 +108,7 @@ public class PlayerShootingScript : MonoBehaviour
 
             //Negate ammo
             _currentMagazine--;
+            _playerUI.Ammo(_reserveAmmo, $"{_currentMagazine}/{_maxMagazine}");
 
             //Deal damage if need be
             Transform hitTransform = hit.transform;
@@ -147,6 +150,7 @@ public class PlayerShootingScript : MonoBehaviour
 
         GameObject go = Instantiate(_grenadePrefab, _playerCamera.transform.position + (_playerCamera.transform.forward), _playerCamera.transform.rotation);
         _grenadeCount--;
+        _playerUI.Grenade(_grenadeCount);
     }
 
     public IEnumerator ReloadCoroutine()
@@ -156,6 +160,7 @@ public class PlayerShootingScript : MonoBehaviour
             if (reloading)
             {
                 Instantiate(_weaponReloadSoundPrefab, transform.position, Quaternion.identity);
+                _playerUI.Reload();
                 ReloadWeapon();
                 yield return new WaitForSeconds(2);
                 reloading = false;
@@ -175,16 +180,19 @@ public class PlayerShootingScript : MonoBehaviour
 
         _reserveAmmo -= amount;
         _currentMagazine += amount;
+        _playerUI.Ammo(_reserveAmmo, $"{_currentMagazine}/{_maxMagazine}");
     }
 
     public void AddAmmo(int amount)
     { 
         _reserveAmmo += amount;
+        _playerUI.Ammo(_reserveAmmo, $"{_currentMagazine}/{_maxMagazine}");
     }
     
     public void AddGrenades(int amount)
     { 
         _grenadeCount += amount;
+        _playerUI.Grenade(_grenadeCount);
     }
 
     public IEnumerator MeleeCoroutine()

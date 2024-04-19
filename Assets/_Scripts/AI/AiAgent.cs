@@ -17,12 +17,13 @@ public class AiAgent : MonoBehaviour
     public GameObject _eye2;
     public GameObject _shootPoint;
     public GameObject _shootEffectPrefab;
+    public GameObject _shootSoundEffectPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        if (!Physics.Raycast(transform.position, -transform.up, 100f)) Destroy(gameObject);
+        if (!Physics.Raycast(transform.position, Vector3.down, 5)) Destroy(gameObject);
 
         mesh = GetComponentInChildren<SkinnedMeshRenderer>();
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -34,6 +35,8 @@ public class AiAgent : MonoBehaviour
         stateMachine.RegisterState(new Ai_Shoot_State());
         stateMachine.RegisterState(new Ai_Idle_State());
         stateMachine.ChangeState(initialState);
+
+        
     }
 
     // Update is called once per frame

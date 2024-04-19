@@ -7,6 +7,11 @@ public class BuildingHealthComponent : EntityHealthComponent
     [SerializeField] private GameObject _explosionPrefab;
     [SerializeField] private GameObject _deathSpawnItem;
 
+    private void Awake()
+    {
+        currentHealth = 200;
+    }
+
     public override void PlayDeathEffects()
     {
         GameObject go = Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
@@ -23,6 +28,7 @@ public class BuildingHealthComponent : EntityHealthComponent
     {
         GameObject managerGO = GameObject.FindGameObjectWithTag("GameManager");
         GameManager managerScript = managerGO.GetComponent<GameManager>();
+        managerScript.BaseDestroyed();
         managerScript.AddPoints(100);
     }
 

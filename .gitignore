@@ -70,33 +70,3 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
-
-# Added by Scott Schimpf
-*.fbx
-*.fbx.meta
-*.controller
-*.controller.meta
-*.meta
-*.cs.meta
-*.mat
-*.mat.meta
-*.mp3
-*.mp3.meta
-*.prefab
-*.prefab.meta
-*.asset
-*.asset.meta
-*.unity
-*.unity.meta
-*.shader
-*.shader.meta
-*.png
-*.png.meta
-*.exr
-*.exr.meta
-*.anim
-*.anim.meta
-*.lighting
-*.lighting.meta
-*.cgnic
-*.cgnic.meta

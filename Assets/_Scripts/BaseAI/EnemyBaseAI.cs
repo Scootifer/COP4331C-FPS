@@ -9,8 +9,8 @@ public class EnemyBaseAI : MonoBehaviour
     private GameObject _navMesh;
 
     [SerializeField] GameObject _aiPrefab;
-    [SerializeField] int _maxSpawnCount;
-    [SerializeField] int _spawnDelay;
+    int _maxSpawnCount = 10;
+    int _spawnDelay = 5;
     int _spawnCounter = 0;
 
     // Start is called before the first frame update
@@ -23,13 +23,11 @@ public class EnemyBaseAI : MonoBehaviour
         }
 
         _navMesh = GameObject.FindGameObjectWithTag("WorldMesh");
-        StartCoroutine(SpawnAICoroutine());
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _maxSpawnCount = gm._maxAiToSpawn;
+
+        StartCoroutine(SpawnAICoroutine());
     }
 
     private IEnumerator SpawnAICoroutine()
@@ -48,14 +46,14 @@ public class EnemyBaseAI : MonoBehaviour
             _spawnCounter++;
 
 
-            yield return new WaitForSeconds(_spawnDelay + UnityEngine.Random.Range(1,5));
+            yield return new WaitForSeconds(_spawnDelay + UnityEngine.Random.Range(1,7));
         }
     }
 
     private Vector3 GetSpawnPoint()
     {
         Vector2 randomPoint2d = UnityEngine.Random.insideUnitCircle * 10;
-        Vector3 randomPoint3d = new Vector3(randomPoint2d.x, 100, randomPoint2d.y) + transform.position;
+        Vector3 randomPoint3d = new Vector3(randomPoint2d.x, 200, randomPoint2d.y) + transform.position;
         
 
         RaycastHit hit;

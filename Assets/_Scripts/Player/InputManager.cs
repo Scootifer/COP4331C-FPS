@@ -51,7 +51,7 @@ public class InputManager : MonoBehaviour
         else shootingScript.grenade = false;
 
         if (onFoot.Reload.IsPressed()) shootingScript.reloading = true;
-        else shootingScript.reloading = false;
+        //else shootingScript.reloading = false;
 
         if (onFoot.Melee.IsPressed()) shootingScript.melee = true;
         else shootingScript.melee = false;

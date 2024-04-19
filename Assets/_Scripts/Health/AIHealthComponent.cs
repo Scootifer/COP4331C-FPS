@@ -7,16 +7,22 @@ public class AIHealthComponent : EntityHealthComponent
     [SerializeField] private GameObject _bloodSplashPrefab;
     [SerializeField] private GameObject _deathSpawnItem;
 
+    private void Awake()
+    {
+        maxHealth *= transform.localScale.x;
+        currentHealth = maxHealth;
+    }
+
     public override void PlayDeathEffects()
     {
+        
         GameObject go = Instantiate(_bloodSplashPrefab, transform.position, Quaternion.identity);
 
     }
 
     public override void SpawnDeathItem()
-    {
+    {;
         float randChance = UnityEngine.Random.Range(0, 1.01f);
-
         if (randChance > 0.75f) Instantiate(_deathSpawnItem, transform.position - new Vector3(0,0.5f,0), Quaternion.identity);
     }
 
